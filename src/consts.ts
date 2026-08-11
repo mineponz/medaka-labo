@@ -27,9 +27,9 @@ export const PRIVACY_POLICY_UPDATED = '2026-08-11';
 /**
  * Amazonアソシエイトのトラッキングタグ。
  *
- * !!! 現在はプレースホルダ。Amazonアソシエイト審査通過後、本人が取得した実際のタグに
- * 差し替えること（本人が行う外部手続き。審査前にリンクを公開しても報酬は発生しない）。
- * 差し替えるまでは各記事内のAmazonリンクがこのプレースホルダタグのまま本番公開される点に注意。
+ * 2026-08-11、本人がAmazonアソシエイト登録IDとして取得した実際のタグに差し替え済み。
+ * 登録直後は仮審査中の状態で、180日以内に適格販売（3件）が発生すると本審査に進む
+ * 仕組みのため、リンクは既に公開してよい（審査完了前でも報酬記録の対象になる）。
  */
 export const AMAZON_ASSOCIATE_TAG_PLACEHOLDER = 'YOUR_ASSOCIATE_TAG';
-export const AMAZON_ASSOCIATE_TAG: string = AMAZON_ASSOCIATE_TAG_PLACEHOLDER;
+export const AMAZON_ASSOCIATE_TAG: string = 'medakalabo-22';
