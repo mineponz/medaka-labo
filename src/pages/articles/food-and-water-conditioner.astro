@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
+import FishIcon from '../../components/FishIcon.astro';
 import { findArticle } from '../../lib/articles.ts';
 
 const article = findArticle('food-and-water-conditioner')!;
@@ -12,7 +13,12 @@ const article = findArticle('food-and-water-conditioner')!;
   breadcrumb={[{ label: '記事一覧', href: '/' }]}
 >
   <p class="pr-notice">本記事はプロモーションを含みます。</p>
-  <h1>{article.title}</h1>
+  <h1 class="title-with-icon">
+    <span class="title-icons">
+      {article.species.map((s) => <FishIcon species={s} size={26} />)}
+    </span>
+    {article.title}
+  </h1>
   <p class="lead">{article.summary}</p>
 
   <h2>普段の餌と、繁殖期の餌はちょっと違う</h2>
@@ -54,6 +60,16 @@ const article = findArticle('food-and-water-conditioner')!;
   </p>
 
   <style>
+    .title-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .title-icons {
+      display: inline-flex;
+      gap: 0.15rem;
+      flex-shrink: 0;
+    }
     .pr-notice {
       display: inline-block;
       margin: 0 0 0.5rem;

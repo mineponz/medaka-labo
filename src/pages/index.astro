@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroIllustration from '../components/HeroIllustration.astro';
+import FishIcon from '../components/FishIcon.astro';
 import { ARTICLES, SPECIES_LABELS } from '../lib/articles.ts';
 import { SITE_TITLE } from '../consts.ts';
 
@@ -13,6 +15,8 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
     めだか・金魚の飼育で使う用品の選び方をまとめています。<strong>生体の販売・仲介はしていません。</strong>
   </p>
 
+  <HeroIllustration />
+
   <h2>記事一覧</h2>
   <ul class="articles">
     {sorted.map((article) => (
@@ -20,7 +24,10 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
         <a href={`/articles/${article.slug}/`}>
           <span class="tags">
             {article.species.map((s) => (
-              <span class={`tag tag-${s}`}>{SPECIES_LABELS[s]}</span>
+              <span class={`tag tag-${s}`}>
+                <FishIcon species={s} size={14} />
+                {SPECIES_LABELS[s]}
+              </span>
             ))}
           </span>
           <span class="title">{article.title}</span>
@@ -76,9 +83,11 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
     }
 
     .tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       margin-right: 0.35rem;
-      padding: 0.1rem 0.5rem;
+      padding: 0.1rem 0.55rem 0.1rem 0.4rem;
       border-radius: 999px;
       font-size: 0.6875rem;
       font-weight: 600;

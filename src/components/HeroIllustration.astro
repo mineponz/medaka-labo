@@ -1,0 +1,71 @@
+---
+// トップページ用の装飾イラスト。自作のライン画SVG（外部画像・写真素材は使わず、
+// サイトのデザイントークン var(--accent) / var(--accent-weak) だけで完結させる）。
+---
+
+<div class="hero-illustration" aria-hidden="true">
+  <svg viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <!-- 水草 -->
+    <path
+      d="M20 90 C14 70 26 55 18 38 M20 90 C26 72 16 58 24 40"
+      stroke="var(--accent)"
+      stroke-width="2"
+      fill="none"
+      opacity="0.45"
+      stroke-linecap="round"
+    />
+    <path
+      d="M300 90 C294 68 306 52 296 32"
+      stroke="var(--accent)"
+      stroke-width="2"
+      fill="none"
+      opacity="0.45"
+      stroke-linecap="round"
+    />
+
+    <!-- 気泡 -->
+    <circle cx="60" cy="20" r="2.5" fill="var(--accent)" opacity="0.35" />
+    <circle cx="70" cy="12" r="1.5" fill="var(--accent)" opacity="0.3" />
+    <circle cx="250" cy="16" r="2" fill="var(--accent)" opacity="0.3" />
+
+    <!-- めだか（小・群れ） -->
+    <g transform="translate(50 50) scale(0.9)" fill="var(--accent)">
+      <path d="M0 8c3-5 9-7 15-7 6 0 10 3 11 7-1 4-5 7-11 7-6 0-12-2-15-7Z" opacity="0.85" />
+      <path d="M0 8 6 4 6 12Z" opacity="0.55" />
+    </g>
+    <g transform="translate(80 65) scale(0.7)" fill="var(--accent)">
+      <path d="M0 8c3-5 9-7 15-7 6 0 10 3 11 7-1 4-5 7-11 7-6 0-12-2-15-7Z" opacity="0.55" />
+      <path d="M0 8 6 4 6 12Z" opacity="0.35" />
+    </g>
+
+    <!-- 金魚（大） -->
+    <g transform="translate(190 30)" fill="var(--accent)">
+      <ellipse cx="24" cy="16" rx="20" ry="14" opacity="0.85" />
+      <path d="M8 16 C-4 6 -6 28 8 16 Z" opacity="0.55" />
+      <path d="M18 4 C13 -2 22 -2 21 6 Z" opacity="0.5" />
+    </g>
+
+    <!-- 水面のゆらぎ -->
+    <path
+      d="M0 86 Q20 80 40 86 T80 86 T120 86 T160 86 T200 86 T240 86 T280 86 T320 86"
+      stroke="var(--border)"
+      stroke-width="1.5"
+      fill="none"
+    />
+  </svg>
+</div>
+
+<style>
+  .hero-illustration {
+    margin: 0.75rem 0 1.5rem;
+    border-radius: 12px;
+    background: var(--accent-weak);
+    padding: 0.75rem 1rem 0;
+    overflow: hidden;
+  }
+  .hero-illustration svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

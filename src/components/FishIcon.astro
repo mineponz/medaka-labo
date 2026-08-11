@@ -1,0 +1,56 @@
+---
+import type { Species } from '../lib/articles.ts';
+
+interface Props {
+  species: Species;
+  size?: number;
+}
+
+const { species, size = 20 } = Astro.props;
+---
+
+{species === 'medaka' ? (
+  <svg
+    width={size}
+    height={size * 0.6}
+    viewBox="0 0 40 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class="fish-icon"
+  >
+    <path
+      d="M2 12c4-6 12-9 21-9 8 0 13 4 15 9-2 5-7 9-15 9-9 0-17-3-21-9Z"
+      fill="currentColor"
+      opacity="0.9"
+    />
+    <path d="M2 12 L10 7 L10 17 Z" fill="currentColor" opacity="0.6" />
+    <circle cx="30" cy="10" r="1.4" fill="var(--surface, #fff)" />
+  </svg>
+) : (
+  <svg
+    width={size}
+    height={size * 0.7}
+    viewBox="0 0 40 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class="fish-icon"
+  >
+    <ellipse cx="19" cy="14" rx="14" ry="10" fill="currentColor" opacity="0.9" />
+    <path
+      d="M6 14 C-1 8 -2 20 6 14 Z M4 14 C-3 6 -4 22 4 14 Z"
+      fill="currentColor"
+      opacity="0.6"
+    />
+    <path d="M14 5 C11 1 17 1 16 6 Z" fill="currentColor" opacity="0.6" />
+    <circle cx="29" cy="11" r="1.6" fill="var(--surface, #fff)" />
+  </svg>
+)}
+
+<style>
+  .fish-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+</style>
