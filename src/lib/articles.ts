@@ -24,7 +24,7 @@ export const ARTICLES: Article[] = [
     slug: 'tank-and-heater-guide',
     title: '水槽セット・オートヒーターの選び方',
     summary:
-      '屋内飼育で最初に揃える水槽セットとオートヒーターを、サイズ・水量・対応温度の観点で比較する。',
+      '屋内飼育で最初に買う水槽セットとオートヒーター。サイズと水量、対応温度のどこを見れば失敗しないかをまとめました。',
     species: ['medaka'],
     publishedDate: '2026-08-11',
   },
@@ -32,7 +32,7 @@ export const ARTICLES: Article[] = [
     slug: 'food-and-water-conditioner',
     title: '産卵繁殖用の餌・水質調整剤の選び方',
     summary:
-      '繁殖を狙う時期の餌の与え方と、水替え時に使う水質調整剤の役割・選び方をまとめる。',
+      '繁殖を狙う時期の餌のあげ方と、水替えのたびに使う水質調整剤の話。地味だけど毎日効いてくる部分です。',
     species: ['medaka'],
     publishedDate: '2026-08-11',
   },
@@ -40,7 +40,7 @@ export const ARTICLES: Article[] = [
     slug: 'starter-kit-checklist',
     title: '初心者向けメダカ飼育スタートキット',
     summary:
-      'これからメダカを飼い始める人向けに、最低限そろえるべき用品をチェックリスト形式で紹介する。',
+      'これからメダカを飼うなら、とりあえずこれだけ。最低限そろえたい用品をチェックリストにしました。',
     species: ['medaka'],
     publishedDate: '2026-08-11',
   },
@@ -48,7 +48,7 @@ export const ARTICLES: Article[] = [
     slug: 'goldfish-tank-and-filter-guide',
     title: '金魚用の水槽・ろ過フィルターの選び方',
     summary:
-      '金魚は水を汚しやすいため、水槽サイズとろ過フィルターの能力をどう揃えるかを比較する。',
+      '金魚はとにかく水を汚します。水槽サイズとフィルターの能力をどう釣り合わせるかがポイントです。',
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
@@ -56,7 +56,7 @@ export const ARTICLES: Article[] = [
     slug: 'goldfish-food-and-water-conditioner',
     title: '金魚の餌・水質調整剤の選び方',
     summary:
-      '成長段階に合わせた餌の選び方と、水替え時に使う水質調整剤の役割をまとめる。',
+      '大きさに合わせた餌の選び方と、水替えのたびに使う水質調整剤の役割をまとめました。',
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
@@ -64,7 +64,7 @@ export const ARTICLES: Article[] = [
     slug: 'goldfish-starter-kit-checklist',
     title: '初心者向け金魚飼育スタートキット',
     summary:
-      'これから金魚を飼い始める人向けに、最低限そろえるべき用品をチェックリスト形式で紹介する。',
+      'これから金魚を飼うなら、とりあえずこれだけ。最低限そろえたい用品をチェックリストにしました。',
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
@@ -72,7 +72,7 @@ export const ARTICLES: Article[] = [
     slug: 'outdoor-biotope-setup',
     title: '屋外ビオトープ飼育（プラ舟・睡蓮鉢）の始め方',
     summary:
-      'めだかの屋外飼育で使うプラ舟・睡蓮鉢・防鳥ネットの選び方と、設置場所を決める際の注意点をまとめる。',
+      'めだかの屋外飼育で使うプラ舟・睡蓮鉢・防鳥ネットの選び方と、置き場所を決めるときに見落としがちな点。',
     species: ['medaka'],
     publishedDate: '2026-08-11',
   },
@@ -80,7 +80,7 @@ export const ARTICLES: Article[] = [
     slug: 'goldfish-aeration-and-air-pump',
     title: '金魚水槽のエアレーション・エアポンプの選び方',
     summary:
-      '金魚は酸素消費量が多いため、エアポンプ・エアストーンの能力と静音性をどう選ぶかをまとめる。',
+      '金魚は酸素をよく使います。エアポンプ・エアストーンの能力と、意外と大事な静音性の話。',
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
