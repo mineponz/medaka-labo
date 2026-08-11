@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('goldfish-starter-kit-checklist')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.summary}</p>
+
+  <p>
+    金魚飼育を始める際に最低限そろえておきたい用品をチェックリストにした。
+    それぞれの選び方の詳細は個別記事にまとめているので、あわせて確認してほしい。
+    なお当サイトは金魚用品の紹介サイトであり、<strong>金魚個体の販売・仲介は行っていない</strong>。
+    金魚自体は、お近くのアクアリウムショップやホームセンターの生体コーナー、
+    お祭りの金魚すくいなどで入手できる。
+  </p>
+
+  <h2>最低限そろえたい用品</h2>
+  <ul class="checklist">
+    <li>
+      <strong>水槽</strong> — 成長後も見込んで45cm規格以上が扱いやすい。詳しくは
+      <a href="/articles/goldfish-tank-and-filter-guide/">金魚用の水槽・ろ過フィルターの選び方</a>を参照。
+    </li>
+    <li>
+      <strong>ろ過フィルター</strong> — 金魚は水を汚しやすいため、水槽サイズに余裕を持った
+      ろ過能力のものを選ぶ。
+    </li>
+    <li>
+      <strong>餌</strong> — 稚魚・幼魚用の小粒タイプと成魚用を使い分ける。詳しくは
+      <a href="/articles/goldfish-food-and-water-conditioner/">餌・水質調整剤の選び方</a>を参照。
+    </li>
+    <li>
+      <strong>水質調整剤（カルキ抜き）</strong> — 水替えのたびに使う消耗品。
+    </li>
+    <li>
+      <strong>網・バケツ</strong> — 水替えや金魚を移す際に使う。水槽専用として1つ用意しておくと、
+      他の用途と共用して薬剤等が混ざる心配がない。
+    </li>
+  </ul>
+  <AmazonLink keyword="金魚飼育 スターターセット" label="Amazonで「金魚飼育 スターターセット」を見る" />
+
+  <h2>あると便利な用品</h2>
+  <ul class="checklist">
+    <li>
+      <strong>水温計</strong> — 急激な水温変化がないか確認するために、水槽内に貼るタイプの
+      水温計を併用すると安心。
+    </li>
+    <li>
+      <strong>水換え用ポンプ（サイフォン式）</strong> — 底に溜まった排泄物・食べ残しを
+      吸い出しながら水替えができる。金魚は汚れやすいため持っておくと管理が楽になる。
+    </li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <p>
+    最初に水槽・フィルター・餌・水質調整剤の4点をそろえれば、日常の管理は始められる。
+    水を汚しやすい魚種なので、水槽サイズとろ過能力に余裕を持たせるのが長続きのコツ。
+  </p>
+
+  <style>
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    .checklist { padding-left: 1.25rem; }
+    .checklist li { margin-bottom: 0.6rem; }
+  </style>
+</BaseLayout>

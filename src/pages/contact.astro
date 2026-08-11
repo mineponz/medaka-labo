@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL, CONTACT_EMAIL_PLACEHOLDER } from '../consts';
+import { SITE_TITLE, CONTACT_EMAIL, CONTACT_EMAIL_PLACEHOLDER } from '../consts';
 
 /**
  * お問い合わせページ。
@@ -10,7 +10,7 @@ import { CONTACT_EMAIL, CONTACT_EMAIL_PLACEHOLDER } from '../consts';
  * 差し替えるまでは mailto リンクを出さず「準備中」と表示する（存在しない宛先を案内しないため）。
  */
 const title = 'お問い合わせ';
-const description = 'めだか飼育ラボへのご指摘・ご要望・その他のお問い合わせ先です。';
+const description = `${SITE_TITLE}へのご指摘・ご要望・その他のお問い合わせ先です。`;
 
 const isPlaceholder = CONTACT_EMAIL === CONTACT_EMAIL_PLACEHOLDER;
 ---
@@ -42,7 +42,7 @@ const isPlaceholder = CONTACT_EMAIL === CONTACT_EMAIL_PLACEHOLDER;
     <li>誤っていると思われる箇所と、その根拠（可能であれば）</li>
   </ul>
   <p>
-    当サイトはメダカ飼育用品の紹介サイトであり、メダカ個体の販売・取引の仲介は行っていません。
+    当サイトはめだか・金魚の飼育用品の紹介サイトであり、生体の販売・取引の仲介は行っていません。
     生体に関するお問い合わせにはお答えできません。
   </p>
 

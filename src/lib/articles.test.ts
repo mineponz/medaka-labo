@@ -8,25 +8,32 @@ test('ARTICLES に形式エラーがない', () => {
 
 test('validateArticles: 重複slugを検出する', () => {
   const errors = validateArticles([
-    { slug: 'a', title: 't1', summary: 's1', publishedDate: '2026-01-01' },
-    { slug: 'a', title: 't2', summary: 's2', publishedDate: '2026-01-02' },
+    { slug: 'a', title: 't1', summary: 's1', species: ['medaka'], publishedDate: '2026-01-01' },
+    { slug: 'a', title: 't2', summary: 's2', species: ['medaka'], publishedDate: '2026-01-02' },
   ]);
   assert.ok(errors.some((e) => e.includes('duplicate slug')));
 });
 
 test('validateArticles: 不正な日付を検出する', () => {
   const errors = validateArticles([
-    { slug: 'a', title: 't', summary: 's', publishedDate: '2026/01/01' },
+    { slug: 'a', title: 't', summary: 's', species: ['medaka'], publishedDate: '2026/01/01' },
   ]);
   assert.ok(errors.some((e) => e.includes('invalid publishedDate')));
 });
 
 test('validateArticles: 空のtitle/summaryを検出する', () => {
   const errors = validateArticles([
-    { slug: 'a', title: '  ', summary: '', publishedDate: '2026-01-01' },
+    { slug: 'a', title: '  ', summary: '', species: ['medaka'], publishedDate: '2026-01-01' },
   ]);
   assert.ok(errors.some((e) => e.includes('empty title')));
   assert.ok(errors.some((e) => e.includes('empty summary')));
+});
+
+test('validateArticles: 空のspeciesを検出する', () => {
+  const errors = validateArticles([
+    { slug: 'a', title: 't', summary: 's', species: [], publishedDate: '2026-01-01' },
+  ]);
+  assert.ok(errors.some((e) => e.includes('empty species')));
 });
 
 test('findArticle: 存在するslugを取得できる', () => {

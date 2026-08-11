@@ -6,10 +6,10 @@
  * 独自ドメインを設定したらここを差し替える。
  */
 export const SITE_URL = 'https://medaka-labo.mineponz.workers.dev';
-export const SITE_TITLE = 'めだか飼育ラボ';
+export const SITE_TITLE = '金魚めだかラボ';
 export const SITE_DESCRIPTION =
-  'メダカ飼育に使う水槽・ヒーター・餌・水質調整剤などの選び方をまとめる用品紹介サイト。' +
-  '生体（メダカ個体）の販売・仲介は行っていません。';
+  'めだか・金魚の飼育に使う水槽・フィルター・餌・水質調整剤などの選び方をまとめる用品紹介サイト。' +
+  '生体（めだか・金魚個体）の販売・仲介は行っていません。';
 
 /**
  * お問い合わせ先メールアドレス。

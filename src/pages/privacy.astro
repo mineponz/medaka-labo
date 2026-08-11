@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
+  SITE_TITLE,
   PRIVACY_POLICY_UPDATED,
   AMAZON_ASSOCIATE_TAG,
   AMAZON_ASSOCIATE_TAG_PLACEHOLDER,
@@ -20,7 +21,7 @@ import {
  */
 const title = 'プライバシーポリシー';
 const description =
-  'めだか飼育ラボにおける利用者情報の取り扱い、Amazonアソシエイト・プログラムとCookieについての方針を説明します。';
+  `${SITE_TITLE}における利用者情報の取り扱い、Amazonアソシエイト・プログラムとCookieについての方針を説明します。`;
 
 const isAssociateTagPlaceholder = AMAZON_ASSOCIATE_TAG === AMAZON_ASSOCIATE_TAG_PLACEHOLDER;
 ---
@@ -28,7 +29,7 @@ const isAssociateTagPlaceholder = AMAZON_ASSOCIATE_TAG === AMAZON_ASSOCIATE_TAG_
 <BaseLayout title={title} description={description} breadcrumb={[]}>
   <h1>プライバシーポリシー</h1>
   <p class="lead">
-    めだか飼育ラボ（以下「当サイト」）における利用者の情報の取り扱いについて、以下のとおり定めます。
+    {SITE_TITLE}（以下「当サイト」）における利用者の情報の取り扱いについて、以下のとおり定めます。
   </p>
 
   <h2>1. Amazonアソシエイト・プログラムについて</h2>
@@ -107,7 +108,7 @@ const isAssociateTagPlaceholder = AMAZON_ASSOCIATE_TAG === AMAZON_ASSOCIATE_TAG_
     当サイトの利用によって生じた損害について、運営者は責任を負いかねます。
   </p>
   <p>
-    当サイトは生体（メダカ個体）の販売・仲介・斡旋は行っていません。生体の入手方法については
+    当サイトは生体（めだか・金魚個体）の販売・仲介・斡旋は行っていません。生体の入手方法については
     お近くの販売店にお問い合わせください。
   </p>
 

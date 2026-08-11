@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ARTICLES } from '../lib/articles.ts';
+import { ARTICLES, SPECIES_LABELS } from '../lib/articles.ts';
+import { SITE_TITLE } from '../consts.ts';
 
 const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ? 1 : -1));
 ---
 
 <BaseLayout>
-  <h1>メダカ飼育用品の選び方ガイド</h1>
+  <h1>めだか・金魚飼育用品の選び方ガイド</h1>
   <p class="lead">
-    水槽・ヒーターのような最初にそろえる耐久品から、餌や水質調整剤のような日々使う消耗品まで、
-    メダカ飼育に使う用品の選び方をまとめています。<strong>メダカ個体の販売・仲介は行っていません。</strong>
+    水槽・フィルターのような最初にそろえる耐久品から、餌や水質調整剤のような日々使う消耗品まで、
+    めだか・金魚飼育に使う用品の選び方をまとめています。<strong>生体の販売・仲介は行っていません。</strong>
   </p>
 
   <h2>記事一覧</h2>
@@ -17,6 +18,11 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
     {sorted.map((article) => (
       <li>
         <a href={`/articles/${article.slug}/`}>
+          <span class="tags">
+            {article.species.map((s) => (
+              <span class={`tag tag-${s}`}>{SPECIES_LABELS[s]}</span>
+            ))}
+          </span>
           <span class="title">{article.title}</span>
           <span class="summary">{article.summary}</span>
           <span class="date">{article.publishedDate}</span>
@@ -25,11 +31,12 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
     ))}
   </ul>
 
-  <h2>めだか飼育ラボについて</h2>
+  <h2>{SITE_TITLE}について</h2>
   <p>
-    メダカ飼育を始めようとすると、水槽・ヒーター・餌・水質調整剤など、
+    めだか・金魚の飼育を始めようとすると、水槽・フィルター・餌・水質調整剤など、
     そろえるべき用品の種類が意外と多く、何を基準に選べばいいか迷いがちです。
-    このサイトでは、用品ごとの選び方の考え方と、実際に使われている商品を紹介しています。
+    このサイトでは、めだか・金魚それぞれの用品の選び方の考え方と、
+    実際に使われている商品をタグで分けて紹介しています。
   </p>
   <p>
     記事内のAmazon商品リンクは、Amazonアソシエイト・プログラムのリンクを含みます
@@ -61,6 +68,22 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
 
     .articles a:hover {
       border-color: var(--accent);
+    }
+
+    .tags {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      background: var(--accent-weak);
+      color: var(--accent);
     }
 
     .title {

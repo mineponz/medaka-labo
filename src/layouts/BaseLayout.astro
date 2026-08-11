@@ -22,7 +22,7 @@ const isAssociateTagPlaceholder = AMAZON_ASSOCIATE_TAG === AMAZON_ASSOCIATE_TAG_
 
 const fullTitle = title
   ? `${title} | ${SITE_TITLE}`
-  : `${SITE_TITLE} — メダカ飼育用品の選び方ガイド`;
+  : `${SITE_TITLE} — めだか・金魚の飼育用品の選び方ガイド`;
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 
 // パンくずの構造化データ。トップ → 中間 → 現在ページ
@@ -69,8 +69,8 @@ const breadcrumbJsonLd = {
     <a class="skip-link" href="#main">本文へスキップ</a>
 
     <header class="site-header">
-      <a href="/" class="wordmark">めだか飼育ラボ</a>
-      <p class="tagline">メダカ飼育用品の選び方ガイド</p>
+      <a href="/" class="wordmark">{SITE_TITLE}</a>
+      <p class="tagline">めだか・金魚の飼育用品の選び方ガイド</p>
     </header>
 
     {crumbs.length > 1 && (
