@@ -5,6 +5,11 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "medaka-labo",
   "compatibility_date": "2026-08-11",
+  // CI の "Deploy command" は `npx wrangler deploy` のみで build command を実行しないため、
+  // ここで deploy 前に astro build を自動実行させる（dist/ は .gitignore 対象でリポジトリに無い）
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     // Astro のビルド出力先（astro.config.mjs の既定値）
     "directory": "./dist",
