@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://medaka-labo.mineponz.workers.dev/sitemap-index.xml

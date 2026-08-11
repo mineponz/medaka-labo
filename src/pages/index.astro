@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ARTICLES } from '../lib/articles.ts';
+
+const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ? 1 : -1));
+---
+
+<BaseLayout>
+  <h1>メダカ飼育用品の選び方ガイド</h1>
+  <p class="lead">
+    水槽・ヒーターのような最初にそろえる耐久品から、餌や水質調整剤のような日々使う消耗品まで、
+    メダカ飼育に使う用品の選び方をまとめています。<strong>メダカ個体の販売・仲介は行っていません。</strong>
+  </p>
+
+  <h2>記事一覧</h2>
+  <ul class="articles">
+    {sorted.map((article) => (
+      <li>
+        <a href={`/articles/${article.slug}/`}>
+          <span class="title">{article.title}</span>
+          <span class="summary">{article.summary}</span>
+          <span class="date">{article.publishedDate}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <h2>めだか飼育ラボについて</h2>
+  <p>
+    メダカ飼育を始めようとすると、水槽・ヒーター・餌・水質調整剤など、
+    そろえるべき用品の種類が意外と多く、何を基準に選べばいいか迷いがちです。
+    このサイトでは、用品ごとの選び方の考え方と、実際に使われている商品を紹介しています。
+  </p>
+  <p>
+    記事内のAmazon商品リンクは、Amazonアソシエイト・プログラムのリンクを含みます
+    （詳細は<a href="/privacy/">プライバシーポリシー</a>）。
+  </p>
+
+  <style>
+    .lead { color: var(--muted); margin-top: 0; }
+
+    .articles {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .articles li {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      background: var(--surface);
+    }
+
+    .articles a {
+      display: block;
+      padding: 0.9rem 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .articles a:hover {
+      border-color: var(--accent);
+    }
+
+    .title {
+      display: block;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .articles a:hover .title {
+      text-decoration: underline;
+    }
+
+    .summary {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 0.2rem;
+    }
+
+    .date {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+  </style>
+</BaseLayout>

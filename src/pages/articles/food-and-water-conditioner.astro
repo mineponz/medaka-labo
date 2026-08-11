@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('food-and-water-conditioner')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>普段の餌と、繁殖期の餌のちがい</h2>
+  <p>
+    メダカの餌は、普段の管理用と、産卵・繁殖を狙う時期用とで使い分けられることが多い。
+    繁殖期は親魚の栄養状態が産卵数・稚魚の育ちに影響しやすいため、動物性たんぱく質や
+    ビタミンを強化した「産卵繁殖用」と表示された餌が選ばれる傾向がある。
+    キョーリン（Kyorin）の「Hikari」シリーズには、産卵繁殖期のメダカ向けに配合された
+    製品ラインがある。
+  </p>
+  <AmazonLink keyword="キョーリン Hikari メダカ 産卵繁殖用" label="Amazonで「Hikari 産卵繁殖用」を見る" />
+  <p>
+    与えすぎは水質悪化の主な原因になる。「数分で食べきれる量を、1日に数回に分けて」が
+    基本の目安で、食べ残しが水面や底に溜まるようなら量を減らす。
+  </p>
+
+  <h2>水質調整剤の役割</h2>
+  <p>
+    水道水にはカルキ（塩素）が含まれており、そのままメダカの水槽に入れると魚体やえらに
+    負担をかける。水質調整剤（カルキ抜き）は、水道水を注ぐ際にあわせて使うことで塩素を
+    中和し、水替え時の急激な水質変化による負担を和らげる役割を持つ。
+    製品によっては魚の粘膜保護成分が配合されているものもあり、水替え頻度が高い時期には
+    活用されることが多い。オアシル（AS-1）のような水質調整剤はメダカ飼育でも使われている
+    製品のひとつ。
+  </p>
+  <AmazonLink keyword="オアシル 水質調整剤 メダカ" label="Amazonで「水質調整剤」を見る" />
+
+  <h2>使い方の基本</h2>
+  <ul>
+    <li>水替えのたびに、新しく足す水道水の量に応じて水質調整剤を規定量入れる</li>
+    <li>餌は「数分で食べきれる量」を基準に、様子を見ながら調整する</li>
+    <li>水が急に白く濁った・匂いが強くなった場合は、餌の量か水替え頻度を見直す</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <p>
+    餌と水質調整剤は消耗品なので、飼育を続ける限り継続的に必要になる。まだ水槽・ヒーターを
+    そろえていない場合は<a href="/articles/tank-and-heater-guide/">水槽セット・オートヒーターの選び方</a>
+    もあわせて確認してほしい。
+  </p>
+
+  <style>
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>

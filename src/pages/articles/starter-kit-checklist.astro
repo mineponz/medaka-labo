@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('starter-kit-checklist')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.summary}</p>
+
+  <p>
+    メダカ飼育を始める際に最低限そろえておきたい用品をチェックリストにした。
+    それぞれの選び方の詳細は個別記事にまとめているので、あわせて確認してほしい。
+    なお当サイトはメダカ用品の紹介サイトであり、<strong>メダカ個体の販売・仲介は行っていない</strong>。
+    メダカ自体は、お近くのアクアリウムショップやホームセンターの生体コーナーで入手できる。
+  </p>
+
+  <h2>最低限そろえたい用品</h2>
+  <ul class="checklist">
+    <li>
+      <strong>水槽</strong> — 屋内飼育なら30cm規格以上が扱いやすい。詳しくは
+      <a href="/articles/tank-and-heater-guide/">水槽セット・オートヒーターの選び方</a>を参照。
+    </li>
+    <li>
+      <strong>オートヒーター</strong>（周年屋内飼育・寒冷地の場合） — 水量に合った対応ワット数の
+      製品を選ぶ。
+    </li>
+    <li>
+      <strong>餌</strong> — 普段用と、繁殖を狙う時期の産卵繁殖用を使い分ける。詳しくは
+      <a href="/articles/food-and-water-conditioner/">餌・水質調整剤の選び方</a>を参照。
+    </li>
+    <li>
+      <strong>水質調整剤（カルキ抜き）</strong> — 水替えのたびに使う消耗品。
+    </li>
+    <li>
+      <strong>網・バケツ</strong> — 水替えやメダカを移す際に使う。水槽専用として1つ用意しておくと、
+      他の用途と共用して薬剤等が混ざる心配がない。
+    </li>
+  </ul>
+  <AmazonLink keyword="メダカ飼育 スターターセット" label="Amazonで「メダカ飼育 スターターセット」を見る" />
+
+  <h2>あると便利な用品</h2>
+  <ul class="checklist">
+    <li>
+      <strong>水温計</strong> — ヒーターの設定が実際の水温と合っているか確認するために、
+      水槽内に貼るタイプの水温計を併用すると安心。
+    </li>
+    <li>
+      <strong>産卵床</strong> — 繁殖を狙う場合、卵を産み付けるための人工水草タイプの産卵床が
+      使われることが多い。
+    </li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <p>
+    最初に水槽・ヒーター・餌・水質調整剤の4点をそろえれば、日常の管理は始められる。
+    繁殖を意識する場合は産卵床を追加する、というのが多くの飼育者の順序になっている。
+  </p>
+
+  <style>
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    .checklist { padding-left: 1.25rem; }
+    .checklist li { margin-bottom: 0.6rem; }
+  </style>
+</BaseLayout>
