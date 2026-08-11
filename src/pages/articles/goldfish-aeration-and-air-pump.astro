@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('goldfish-aeration-and-air-pump')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>エアポンプが必要な理由</h2>
+  <p>
+    金魚は体が大きく酸素消費量も多いため、上部フィルターなどで水面が動いていても
+    酸素が不足しやすい。特に夏場の高水温期（水温が上がるほど水中の溶存酸素量は
+    減りやすい）や、水槽内の匹数が多い場合は、エアポンプによるエアレーションを
+    別途用意しておくと酸欠のリスクを減らしやすい。
+  </p>
+  <AmazonLink keyword="金魚 エアポンプ" label="Amazonで「金魚 エアポンプ」を見る" />
+
+  <h2>エアポンプ・エアストーンの選び方</h2>
+  <p>
+    製品を選ぶ際に確認しておきたいのは主に次の2点。
+  </p>
+  <ul>
+    <li>
+      <strong>吐出量（対応水量）</strong> — エアポンプにも「〜60cm水槽用」のように
+      対応水量の目安がある。水槽サイズに対して余裕のある吐出量を選ぶと、
+      フィルターとの併用でも安定して酸素を供給できる。
+    </li>
+    <li>
+      <strong>静音性</strong> — 室内で常時稼働させる機器のため、駆動音の大きさは
+      設置場所（寝室に近いか等）に応じて確認しておきたいポイント。静音設計を
+      うたう製品のレビューで実際の動作音の評判を確認しておくと選びやすい。
+    </li>
+  </ul>
+  <p>
+    エアストーン（気泡を細かくする部品）は消耗品で、使ううちに目詰まりして
+    気泡が粗くなっていくため、定期的な交換が必要になる。
+  </p>
+  <AmazonLink keyword="金魚 エアストーン" label="Amazonで「金魚 エアストーン」を見る" />
+
+  <h2>まとめ</h2>
+  <p>
+    エアポンプは「水槽サイズに対して吐出量に余裕があるか」「設置場所に合った静音性か」を
+    基準に選ぶと失敗しにくい。フィルター選びについては
+    <a href="/articles/goldfish-tank-and-filter-guide/">水槽・ろ過フィルターの選び方</a>
+    もあわせて確認してほしい。
+  </p>
+
+  <style>
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>

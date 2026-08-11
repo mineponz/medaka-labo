@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('outdoor-biotope-setup')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>プラ舟・睡蓮鉢のどちらを選ぶか</h2>
+  <p>
+    屋外飼育（ビオトープ飼育）では、ガラス水槽の代わりにプラ舟（プラスチック製の浅い容器）や
+    睡蓮鉢を使うのが一般的。プラ舟は容量に対して安価で、複数匹を選別・繁殖させたい場合に
+    数を揃えやすい。睡蓮鉢は陶器製・樹脂製が多く、見た目を庭やベランダに馴染ませたい場合に
+    選ばれやすい。水量の目安としては、45L前後の容器であれば数匹〜十数匹程度の屋外飼育を
+    無理なく始めやすい。
+  </p>
+  <AmazonLink keyword="めだか プラ舟 ビオトープ" label="Amazonで「めだか プラ舟」を見る" />
+
+  <h2>防鳥ネットと設置場所</h2>
+  <p>
+    屋外飼育で見落とされやすいのが、鳥やカエルなどの外敵対策と設置場所の日照条件。
+    確認しておきたいのは主に次の2点。
+  </p>
+  <ul>
+    <li>
+      <strong>防鳥ネットの有無</strong> — サギなどの野鳥に食べられる被害は屋外飼育で
+      よく報告される。容器のサイズに合った防鳥ネットをかぶせておくと被害を防ぎやすい。
+    </li>
+    <li>
+      <strong>日照時間</strong> — 直射日光が一日中当たる場所は夏場の水温上昇・水質悪化が
+      急激になりやすい。午前中だけ日が当たる、または一部に日陰ができる場所を選ぶと、
+      水温の急変を抑えやすい。
+    </li>
+  </ul>
+  <p>
+    水草（ホテイアオイなど浮草）を入れておくと、日陰を作りつつ水質浄化の補助にもなり、
+    ビオトープ飼育ではよく併用される。
+  </p>
+  <AmazonLink keyword="めだか 防鳥ネット" label="Amazonで「めだか 防鳥ネット」を見る" />
+
+  <h2>まとめ</h2>
+  <p>
+    容器は「今後増える数まで見込んだ水量があるか」、設置場所は「外敵対策と直射日光を
+    避ける工夫があるか」を基準に選ぶと失敗しにくい。屋内飼育の基本用品については
+    <a href="/articles/starter-kit-checklist/">初心者向けスタートキット</a>もあわせて確認してほしい。
+  </p>
+
+  <style>
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>

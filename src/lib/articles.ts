@@ -68,6 +68,22 @@ export const ARTICLES: Article[] = [
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
+  {
+    slug: 'outdoor-biotope-setup',
+    title: '屋外ビオトープ飼育（プラ舟・睡蓮鉢）の始め方',
+    summary:
+      'めだかの屋外飼育で使うプラ舟・睡蓮鉢・防鳥ネットの選び方と、設置場所を決める際の注意点をまとめる。',
+    species: ['medaka'],
+    publishedDate: '2026-08-11',
+  },
+  {
+    slug: 'goldfish-aeration-and-air-pump',
+    title: '金魚水槽のエアレーション・エアポンプの選び方',
+    summary:
+      '金魚は酸素消費量が多いため、エアポンプ・エアストーンの能力と静音性をどう選ぶかをまとめる。',
+    species: ['goldfish'],
+    publishedDate: '2026-08-11',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
