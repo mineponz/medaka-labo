@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import FishIcon from '../../components/FishIcon.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('winter-care-equipment-guide')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1 class="title-with-icon">
+    <span class="title-icons">
+      {article.species.map((s) => <FishIcon species={s} size={26} />)}
+    </span>
+    {article.title}
+  </h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>屋外飼育のめだかは、冬眠して冬を越します</h2>
+  <p>
+    めだかは水温が5℃を下回るくらいから底のほうでじっとして冬眠状態に入ります。
+    実はこれ自体は自然な姿で、無理に加温して活動させ続ける必要はありません。
+    ただし「凍って命を落とす」「急な水温変化で弱る」ことだけは避けたいところです。
+    ここでは屋外飼育（<a href="/articles/outdoor-biotope-setup/">プラ舟・睡蓮鉢のビオトープ飼育</a>）
+    のめだかを、無理なく冬越しさせるための備えをまとめます。
+  </p>
+
+  <h2>まず見るべきは、水深と容器の断熱</h2>
+  <p>
+    冬越しでいちばん大事なのは、水面が全部凍っても底のほうまでは凍らないだけの水深を
+    確保しておくことです。目安は30cm以上。プラ舟や睡蓮鉢が浅い場合は、発泡スチロール製の
+    飼育容器に切り替えるか、既存の容器を発泡スチロール板で囲って断熱するのが効果的です。
+  </p>
+  <AmazonLink keyword="めだか 発泡スチロール 飼育容器" label="Amazonで「めだか 発泡スチロール容器」を見る" />
+
+  <h2>簡易温室・保温ヒーターはどんなときに使う？</h2>
+  <p>
+    寒冷地でどうしても凍結が心配な場合や、稚魚のうちから冬を越させて成長を止めたくない場合は、
+    ビニール製の簡易温室で容器全体を覆ったり、屋外用の保温ヒーターを併用する方法もあります。
+    見ておきたいポイントはこの2つです。
+  </p>
+  <ul>
+    <li>
+      <strong>屋外使用に対応しているか</strong> — ヒーターは室内水槽用と屋外容器用で
+      防水性能が違います。屋外で使うなら、必ず屋外対応と明記された製品を選んでください。
+    </li>
+    <li>
+      <strong>水量に対応したワット数か</strong> — 容器の水量に対してワット数が小さすぎると
+      効果が出ず、大きすぎると急激な水温変化でめだかに負担をかけます。パッケージの
+      対応水量の目安を確認しましょう。
+    </li>
+  </ul>
+  <p>
+    保温する場合でも、水温を急に上げるのではなく、凍結を防ぐ程度に抑えるのがコツです。
+    中途半端に温めて冬眠と活動を行き来させるほうが、めだかの負担は大きくなります。
+  </p>
+  <AmazonLink keyword="めだか 屋外 保温ヒーター" label="Amazonで「めだか 屋外用ヒーター」を見る" />
+
+  <h2>まとめ</h2>
+  <p>
+    冬越しの基本は「水深30cm以上を確保する」「凍結が心配なら発泡スチロール容器や簡易温室で
+    断熱する」の2点です。無理に加温して冬眠を妨げないことも忘れずに。
+    容器選びの基本については<a href="/articles/outdoor-biotope-setup/">屋外ビオトープ飼育の始め方</a>
+    もあわせてどうぞ。
+  </p>
+
+  <style>
+    .title-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .title-icons {
+      display: inline-flex;
+      gap: 0.15rem;
+      flex-shrink: 0;
+    }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>

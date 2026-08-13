@@ -84,6 +84,22 @@ export const ARTICLES: Article[] = [
     species: ['goldfish'],
     publishedDate: '2026-08-11',
   },
+  {
+    slug: 'winter-care-equipment-guide',
+    title: 'めだかの冬越し・保温対策用品の選び方',
+    summary:
+      '屋外飼育のめだかを寒さから守る発泡スチロール容器・簡易温室・保温ヒーターの選び方と、凍結時に慌てないための備えをまとめました。',
+    species: ['medaka'],
+    publishedDate: '2026-08-13',
+  },
+  {
+    slug: 'goldfish-led-lighting-guide',
+    title: '金魚水槽用LEDライトの選び方',
+    summary:
+      '金魚をきれいに見せるだけじゃなく、水草の育ちや生活リズムにも関わる照明選び。明るさ・色味・タイマーのどこを見ればいいかをまとめました。',
+    species: ['goldfish'],
+    publishedDate: '2026-08-13',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import FishIcon from '../../components/FishIcon.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('goldfish-led-lighting-guide')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1 class="title-with-icon">
+    <span class="title-icons">
+      {article.species.map((s) => <FishIcon species={s} size={26} />)}
+    </span>
+    {article.title}
+  </h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>照明は「見た目」だけの機材じゃありません</h2>
+  <p>
+    水槽用ライトというと金魚をきれいに見せるための機材というイメージが強いですが、
+    それだけではありません。水草を入れているなら光合成に必須ですし、金魚自身にとっても
+    昼夜のリズムを作る役割があります。照明なしで真っ暗な部屋に置きっぱなしにすると、
+    生活リズムが崩れて調子を落とすこともあるので、意外と軽視できない存在です。
+  </p>
+  <AmazonLink keyword="金魚 水槽 LEDライト" label="Amazonで「金魚 水槽用LEDライト」を見る" />
+
+  <h2>選ぶときに見るポイント</h2>
+  <p>
+    候補を絞るときは、だいたいこの3点を見ておけば大きく外しません。
+  </p>
+  <ul>
+    <li>
+      <strong>水槽の横幅に合うサイズか</strong> — ライトは水槽の横幅（cm数）に対応した
+      製品を選びます。小さすぎると端が暗くなり、大きすぎると設置できないことがあるので、
+      購入前に自分の水槽の横幅を測っておきましょう。
+    </li>
+    <li>
+      <strong>水草を育てるかどうかで明るさが変わる</strong> — 観賞用に金魚を照らすだけなら
+      標準的な明るさで十分ですが、水草も一緒に育てたい場合は「水草育成向け」と書かれた
+      光量の強いモデルを選ぶと失敗しにくいです。
+    </li>
+    <li>
+      <strong>タイマー機能の有無</strong> — 毎日消し忘れる・つけ忘れるという人は、
+      タイマー内蔵やスマートプラグと組み合わせられるモデルにしておくと、
+      昼夜のリズムを一定に保ちやすくなります。
+    </li>
+  </ul>
+  <AmazonLink keyword="金魚 水槽 ライト タイマー" label="Amazonで「水槽用ライト タイマー付き」を見る" />
+
+  <h2>点灯時間の目安</h2>
+  <p>
+    観賞用途なら、1日8〜10時間程度の点灯が目安です。水草を育てている場合は、
+    種類によってはもう少し長めの点灯時間が必要になることもあります。
+    つけっぱなしにするとコケが増えやすくなるので、消灯する時間を作ることも忘れずに。
+  </p>
+
+  <h2>まとめ</h2>
+  <p>
+    ライト選びは「水槽の横幅に合うか」「水草を育てるかどうかで明るさを決める」
+    「タイマーで点灯時間を安定させる」の3点で選べば十分です。
+    水槽・フィルター選びの基本については
+    <a href="/articles/goldfish-tank-and-filter-guide/">金魚用の水槽・ろ過フィルターの選び方</a>
+    もどうぞ。
+  </p>
+
+  <style>
+    .title-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .title-icons {
+      display: inline-flex;
+      gap: 0.15rem;
+      flex-shrink: 0;
+    }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>
