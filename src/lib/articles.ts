@@ -100,6 +100,14 @@ export const ARTICLES: Article[] = [
     species: ['goldfish'],
     publishedDate: '2026-08-13',
   },
+  {
+    slug: 'breeding-and-fry-equipment',
+    title: '産卵床・稚魚飼育用品の選び方',
+    summary:
+      '産卵床選びから卵の隔離、稚魚用の餌まで。繁殖シーズンに揃えておきたい用品と、私が最初の年に卵を食べられてしまった失敗から学んだことをまとめました。',
+    species: ['medaka'],
+    publishedDate: '2026-08-14',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;

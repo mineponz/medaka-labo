@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import FishIcon from '../../components/FishIcon.astro';
+import { findArticle } from '../../lib/articles.ts';
+
+const article = findArticle('breeding-and-fry-equipment')!;
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.summary}
+  breadcrumb={[{ label: '記事一覧', href: '/' }]}
+>
+  <p class="pr-notice">本記事はプロモーションを含みます。</p>
+  <h1 class="title-with-icon">
+    <span class="title-icons">
+      {article.species.map((s) => <FishIcon species={s} size={26} />)}
+    </span>
+    {article.title}
+  </h1>
+  <p class="lead">{article.summary}</p>
+
+  <h2>産卵床は、人工産卵藻がいちばん扱いやすいと思います</h2>
+  <p>
+    昔ながらの定番はホテイアオイですが、屋内飼育だと日照量が足りずうまく育たなかったり、
+    冬場は入手しづらかったりします。私も一度、ホテイアオイが根元から枯れてしまって
+    慌てて買い足しに走ったことがあります。今は棕毛やナイロン素材でできた人工の産卵藻を
+    使うことが多く、枯れる心配がなく通年使えるので、初めての繁殖なら断然こちらを
+    おすすめしたいです。
+  </p>
+  <AmazonLink keyword="めだか 人工産卵藻" label="Amazonで「めだか 人工産卵藻」を見る" />
+
+  <h2>卵を見つけたら、すぐに親から隔離してください</h2>
+  <p>
+    めだかは悪気なく、自分が産んだ卵や生まれたばかりの稚魚を餌だと思って食べてしまいます。
+    私は最初の年、この習性を知らずに産卵床をそのまま水槽に浮かべっぱなしにしていて、
+    気づいたら卵がほとんど残っていませんでした。今振り返ると悔しい失敗です。産卵床は
+    毎日チェックして、卵が付いていたらその日のうちに別容器へ移すようにしています。
+  </p>
+  <p>
+    隔離先は小さいプラケースや卵専用のネットで十分です。カルキ抜きした水と、水カビを
+    防ぐために少量のメチレンブルーなどを使う方も多いですね。
+  </p>
+  <AmazonLink keyword="めだか 卵 隔離ケース" label="Amazonで「めだか卵隔離ケース」を見る" />
+
+  <h2>稚魚には、稚魚専用のパウダー餌を</h2>
+  <p>
+    無事孵化しても、稚魚の口はとても小さく、親と同じ餌ではまず食べられません。パウダー状に
+    細かく砕かれた稚魚用フードを用意しておきましょう。私は最初これをケチって普通の餌を
+    指で潰して与えていたのですが、粒の大きさがバラバラで食べ残しが水を汚す原因になり、
+    結局専用品を買い直しました。最初から専用フードを用意しておくほうが、手間もめだかの
+    負担も少なく済むと思います。
+  </p>
+  <p>
+    餌の管理と合わせて、水質調整剤も欠かせません。この辺りは
+    <a href="/articles/food-and-water-conditioner/">産卵繁殖用の餌・水質調整剤の選び方</a>
+    でも詳しく書いているので、あわせて読んでみてください。
+  </p>
+  <AmazonLink keyword="めだか 稚魚 餌 パウダー" label="Amazonで「めだか稚魚用パウダー餌」を見る" />
+
+  <h2>まとめ</h2>
+  <p>
+    産卵床で卵を集め、見つけたらすぐ隔離し、孵化後は専用フードで育てる。この3ステップさえ
+    押さえておけば、私のように卵を全滅させてしまう失敗はぐっと減らせるはずです。屋外飼育
+    での繁殖を考えている方は
+    <a href="/articles/outdoor-biotope-setup/">屋外ビオトープ飼育の始め方</a>
+    もあわせてご覧ください。
+  </p>
+
+  <style>
+    .title-with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .title-icons {
+      display: inline-flex;
+      gap: 0.15rem;
+      flex-shrink: 0;
+    }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 0.5rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-weak);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .lead { color: var(--muted); }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</BaseLayout>
