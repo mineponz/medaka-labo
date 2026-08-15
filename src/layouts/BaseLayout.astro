@@ -14,9 +14,19 @@ interface Props {
   description?: string;
   /** パンくずの中間項目（トップとページ自身は自動で付く） */
   breadcrumb?: { label: string; href: string }[];
+  /**
+   * 本文の末尾にXシェアボタンを出すか。記事ページ（src/pages/articles/*.astro）でのみ true にする。
+   * トップ・プライバシーポリシー・お問い合わせ・404では出さない。
+   */
+  shareable?: boolean;
 }
 
-const { title, description = SITE_DESCRIPTION, breadcrumb = [] } = Astro.props;
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  breadcrumb = [],
+  shareable = false,
+} = Astro.props;
 // Amazonアソシエイトの開示文言は、審査通過前（＝タグがプレースホルダのまま）は
 // 事実と異なる（まだ収入を得ていない）ため出さない。タグ差し替え後に自動で表示される。
 const isAssociateTagPlaceholder = AMAZON_ASSOCIATE_TAG === AMAZON_ASSOCIATE_TAG_PLACEHOLDER;
@@ -32,6 +42,12 @@ const crumbs = [
   ...breadcrumb,
   ...(title ? [{ label: title, href: Astro.url.pathname }] : []),
 ];
+
+// Xの投稿画面へのリンク。記事タイトルはビルド時に確定しているのでクライアントJSは不要
+// （文面は <title> と同じ「記事タイトル | サイト名」。二重管理しないよう fullTitle を再利用する）。
+const shareUrl = shareable
+  ? `https://x.com/intent/tweet?text=${encodeURIComponent(fullTitle)}&url=${encodeURIComponent(canonical)}`
+  : null;
 
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
@@ -108,6 +124,15 @@ const breadcrumbJsonLd = {
 
     <main id="main">
       <slot />
+
+      {shareUrl && (
+        <aside class="share" aria-label="この記事をシェア">
+          <p class="share-lead">この記事が役に立ったら、シェアしてもらえると嬉しいです。</p>
+          <a class="share-link" href={shareUrl} target="_blank" rel="noopener noreferrer">
+            Xでシェア
+          </a>
+        </aside>
+      )}
     </main>
 
     <footer class="site-footer">
@@ -259,6 +284,42 @@ const breadcrumbJsonLd = {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem 1.25rem;
+      }
+    </style>
+
+    <style>
+      /*
+        記事末尾のシェア導線。記事内の主要CTA（AmazonLink = accent色の枠線＋淡い塗り＋太字）より
+        弱い副次アクションとして、色を持たないニュートラルな枠線のみのボタンにしている。
+        余白は8px系（32/24/16/8px）。
+      */
+      .share {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .share-lead {
+        margin: 0 0 0.5rem;
+        color: var(--muted);
+        font-size: 0.8125rem;
+      }
+      .share-link {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--muted);
+        border-radius: 6px;
+        color: var(--text);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      /*
+        hoverでも文字色は --text のまま（--accent は --bg 上で 4.42:1 と AA を僅かに割るため、
+        ここでは色ではなく枠線と淡い塗りで反応を出す）。
+      */
+      .share-link:hover {
+        border-color: var(--accent);
+        background: var(--accent-weak);
       }
     </style>
   </body>
