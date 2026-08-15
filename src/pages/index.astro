@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroIllustration from '../components/HeroIllustration.astro';
 import FishIcon from '../components/FishIcon.astro';
-import { ARTICLES, SPECIES_LABELS } from '../lib/articles.ts';
+import { ARTICLES, SPECIES_LABELS, TOPIC_LABELS, TOPIC_ORDER } from '../lib/articles.ts';
+import type { Species } from '../lib/articles.ts';
 import { SITE_TITLE } from '../consts.ts';
 
 const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ? 1 : -1));
+const SPECIES_ORDER: Species[] = ['medaka', 'goldfish'];
 ---
 
 <BaseLayout>
@@ -18,9 +20,53 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
   <HeroIllustration />
 
   <h2>記事一覧</h2>
+
+  {/*
+    絞り込みUI。記事そのものはビルド時に全件HTMLへ出しておき（SSGのまま）、
+    ここでは各 <li> の表示/非表示を切り替えるだけにしている。
+    JSが動かない環境ではこのUI自体を出さない（動かないUIを見せない）ので初期値は hidden。
+    記事一覧は常に全件見える＝クローラー・JS無効でも全記事にたどり着ける。
+  */}
+  <div class="filters" id="filters" hidden>
+    <label class="filter-label" for="article-search">キーワードで探す</label>
+    <input
+      id="article-search"
+      class="search"
+      type="search"
+      autocomplete="off"
+      placeholder="例: エアレーション、水槽、餌"
+    />
+
+    <div class="chip-row" role="group" aria-label="魚種で絞り込む">
+      {SPECIES_ORDER.map((s) => (
+        <button type="button" class="chip" data-filter="species" data-value={s} aria-pressed="false">
+          <FishIcon species={s} size={14} />
+          {SPECIES_LABELS[s]}
+        </button>
+      ))}
+    </div>
+
+    <div class="chip-row" role="group" aria-label="トピックで絞り込む">
+      {TOPIC_ORDER.map((t) => (
+        <button type="button" class="chip" data-filter="topic" data-value={t} aria-pressed="false">
+          {TOPIC_LABELS[t]}
+        </button>
+      ))}
+    </div>
+
+    <div class="filter-status">
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <button type="button" class="reset" id="filter-reset" hidden>条件をクリア</button>
+    </div>
+  </div>
+
   <ul class="articles">
     {sorted.map((article) => (
-      <li>
+      <li
+        data-species={article.species.join(' ')}
+        data-topics={article.topics.join(' ')}
+        data-search-text={`${article.title} ${article.summary}`.toLowerCase()}
+      >
         <a href={`/articles/${article.slug}/`}>
           <span class="tags">
             {article.species.map((s) => (
@@ -38,6 +84,10 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
     ))}
   </ul>
 
+  <p class="no-results" id="no-results" hidden>
+    該当する記事がありません。キーワードを短くするか、タグの選択を外してみてください。
+  </p>
+
   <h2>{SITE_TITLE}について</h2>
   <p>
     めだかや金魚を飼ってみようと思って調べ始めると、水槽、フィルター、餌、水質調整剤……と、
@@ -53,6 +103,116 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
   <style>
     .lead { color: var(--muted); margin-top: 0; }
 
+    /*
+      絞り込みパネル。記事カードと同じ「淡い枠線＋surface」の見せ方に揃え、
+      余白は8px系（16/8px）。色はサイト既存トークンのみ。
+    */
+    .filters {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .filter-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .search {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9375rem;
+    }
+    .search:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    /* 未選択＝枠線のみ（副次）、選択中＝塗りつぶし（主）の2段階で状態を出す */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .chip:hover {
+      border-color: var(--accent);
+      background: var(--accent-weak);
+    }
+    .chip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .chip[aria-pressed='true'] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--surface);
+      font-weight: 600;
+    }
+    /* 選択中は塗りがaccentになるので、魚アイコン（既定でaccent）を反転させる */
+    .chip[aria-pressed='true'] :global(.fish-icon) {
+      color: var(--surface);
+    }
+
+    .filter-status {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .result-count {
+      margin: 0;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    /* リセットは三次アクション＝リンク相当（塗り・枠線を持たせない） */
+    .reset {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.75rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .no-results {
+      margin: 1rem 0 0;
+      padding: 1.5rem 1rem;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
     .articles {
       list-style: none;
       margin: 0;
@@ -64,6 +224,11 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
       border-radius: 8px;
       margin-bottom: 0.6rem;
       background: var(--surface);
+    }
+
+    /* 絞り込みで外れた記事。hidden属性の既定値に頼らず明示的に消す */
+    .articles li[hidden] {
+      display: none;
     }
 
     .articles a {
@@ -120,4 +285,78 @@ const sorted = [...ARTICLES].sort((a, b) => (a.publishedDate < b.publishedDate ?
       margin-top: 0.4rem;
     }
   </style>
+
+  <script>
+    /*
+      記事一覧の検索・タグ絞り込み。ライブラリなしのvanilla JS。
+      記事のHTMLはビルド時に全件出力済みで、ここでは表示/非表示を切り替えるだけ
+      （DOMを組み立て直さないので、JS未実行でも全記事が見える＝SEO・no-JS環境を壊さない）。
+    */
+    const filters = document.getElementById('filters');
+    const search = document.getElementById('article-search') as HTMLInputElement | null;
+    const countEl = document.getElementById('result-count');
+    const resetEl = document.getElementById('filter-reset');
+    const emptyEl = document.getElementById('no-results');
+    const items = Array.from(document.querySelectorAll<HTMLLIElement>('.articles > li'));
+    const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip'));
+
+    if (filters && search && countEl && resetEl && emptyEl && items.length > 0) {
+      const total = items.length;
+      // JSが動いた時点でUIを出す（動かない環境では出さない）
+      filters.hidden = false;
+
+      const selectedValues = (kind: string) =>
+        chips
+          .filter((c) => c.dataset.filter === kind && c.getAttribute('aria-pressed') === 'true')
+          .map((c) => c.dataset.value ?? '');
+
+      const apply = () => {
+        const query = search.value.trim().toLowerCase();
+        const species = selectedValues('species');
+        const topics = selectedValues('topic');
+        let visible = 0;
+
+        for (const li of items) {
+          const text = li.dataset.searchText ?? '';
+          const itemSpecies = (li.dataset.species ?? '').split(' ');
+          const itemTopics = (li.dataset.topics ?? '').split(' ');
+          // 検索語 AND 魚種（選択したどれかに一致） AND トピック（選択したどれかに一致）。
+          // 未選択の種別は絞り込みに使わない（全件通過）。
+          const matched =
+            (query === '' || text.includes(query)) &&
+            (species.length === 0 || species.some((v) => itemSpecies.includes(v))) &&
+            (topics.length === 0 || topics.some((v) => itemTopics.includes(v)));
+
+          li.hidden = !matched;
+          if (matched) visible += 1;
+        }
+
+        const filtering = query !== '' || species.length > 0 || topics.length > 0;
+        emptyEl.hidden = visible > 0;
+        resetEl.hidden = !filtering;
+        countEl.textContent = filtering ? `${total}件中 ${visible}件を表示` : `全${total}件`;
+      };
+
+      search.addEventListener('input', apply);
+
+      for (const chip of chips) {
+        chip.addEventListener('click', () => {
+          const pressed = chip.getAttribute('aria-pressed') === 'true';
+          chip.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+          apply();
+        });
+      }
+
+      resetEl.addEventListener('click', () => {
+        search.value = '';
+        for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
+        apply();
+        search.focus();
+      });
+
+      apply();
+    } else {
+      console.warn('[index] 絞り込みUIの初期化をスキップしました（要素が見つかりません）');
+    }
+  </script>
 </BaseLayout>

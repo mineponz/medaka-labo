@@ -28,7 +28,8 @@ npm run build    # dist/ に静的出力
 
 ## 記事を追加する手順
 
-1. `src/lib/articles.ts` の `ARTICLES` に1件足す（`slug`はケバブケース）
+1. `src/lib/articles.ts` の `ARTICLES` に1件足す（`slug`はケバブケース）。
+   `topics`（トップページの絞り込みタグ）は**1つ以上必須**。既存8分類（`Topic`型）から選ぶ
 2. `src/pages/articles/<slug>.astro` を作る（既存記事をコピーして書き換えるのが早い）
 3. PR表記・生体売買を煽らない旨を守る
 4. `npm test`（`articles.ts`のバリデーション）と `npm run build` を通す
