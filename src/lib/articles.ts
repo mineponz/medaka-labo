@@ -108,6 +108,14 @@ export const ARTICLES: Article[] = [
     species: ['medaka'],
     publishedDate: '2026-08-14',
   },
+  {
+    slug: 'medaka-aeration-and-air-pump',
+    title: 'めだか水槽のエアレーション・エアポンプの選び方',
+    summary:
+      'めだかにエアレーションは絶対に必要なのか。私の答えは「条件次第」です。入れたほうが安心な3つの場面と、屋外ビオトープでの要否の見分け方、エアポンプ選びで見ているところをまとめました。',
+    species: ['medaka'],
+    publishedDate: '2026-08-15',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
