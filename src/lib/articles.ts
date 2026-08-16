@@ -167,6 +167,15 @@ export const ARTICLES: Article[] = [
     topics: ['aeration'],
     publishedDate: '2026-08-15',
   },
+  {
+    slug: 'medaka-led-lighting-guide',
+    title: 'めだか水槽用LEDライトの選び方',
+    summary:
+      'めだかに照明って要るんでしょうか。観賞や水草の育成だけでなく、産卵に必要な日照時間を確保するという大事な役割があります。屋外飼育との切り分けと、色味・明るさ・タイマーの選び方をまとめました。',
+    species: ['medaka'],
+    topics: ['lighting'],
+    publishedDate: '2026-08-16',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
