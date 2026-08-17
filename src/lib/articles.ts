@@ -185,6 +185,15 @@ export const ARTICLES: Article[] = [
     topics: ['seasonal-care'],
     publishedDate: '2026-08-17',
   },
+  {
+    slug: 'goldfish-breeding-and-fry-equipment',
+    title: '金魚の産卵床・稚魚飼育用品の選び方',
+    summary:
+      '金魚を繁殖させてみたいと思ったときに、まず何を用意すればいいのか。産卵床にする水草・浮草の選び方と、針仔・青仔・黒仔と呼び名が変わっていく稚魚の育て方、めだかより水量が要るという金魚ならではの事情をまとめました。',
+    species: ['goldfish'],
+    topics: ['breeding'],
+    publishedDate: '2026-08-18',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
