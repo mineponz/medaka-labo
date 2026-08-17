@@ -36,7 +36,10 @@ npm run build    # dist/ に静的出力
 
 ## 未対応・要本人作業
 
-- `src/consts.ts` の `AMAZON_ASSOCIATE_TAG` はプレースホルダ。Amazonアソシエイト審査通過後、
-  本人が取得した実タグに差し替える。
-- `src/consts.ts` の `CONTACT_EMAIL` もプレースホルダ。
-- Cloudflareダッシュボードでのリポジトリ接続（新規プロジェクト作成）は本人のブラウザ操作が必要。
+- `src/consts.ts` の `CONTACT_EMAIL` はプレースホルダのまま。`/contact/` は「準備中」表示。
+- （解消済み・参考）`AMAZON_ASSOCIATE_TAG` は2026-08-11に実タグ`medakalabo-22`へ差し替え済み。
+  `AMAZON_ASSOCIATE_TAG_PLACEHOLDER`という別定数と紛らわしいので、変更前に必ず
+  `src/consts.ts`を直接確認すること（このAGENTS.mdの古い記述を信じて「まだプレースホルダ」と
+  誤報告した例が2回あった）。
+- （解消済み）Cloudflareダッシュボードでのリポジトリ接続は完了済み、本番URLは
+  `https://medaka-labo.mineponz.workers.dev/`。
