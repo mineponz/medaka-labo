@@ -176,6 +176,15 @@ export const ARTICLES: Article[] = [
     topics: ['lighting'],
     publishedDate: '2026-08-16',
   },
+  {
+    slug: 'goldfish-winter-care-equipment-guide',
+    title: '金魚の冬越し・保温対策用品の選び方',
+    summary:
+      '金魚は冬眠させるべきか、ヒーターで加温して普段どおり飼うべきか。実は体型や品種によって冬眠の向き不向きがあります。屋外で冬眠させるときの備えと、室内加温という選択肢の選び分けをまとめました。',
+    species: ['goldfish'],
+    topics: ['seasonal-care'],
+    publishedDate: '2026-08-17',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
