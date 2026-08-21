@@ -194,6 +194,15 @@ export const ARTICLES: Article[] = [
     topics: ['breeding'],
     publishedDate: '2026-08-18',
   },
+  {
+    slug: 'goldfish-outdoor-biotope-setup',
+    title: '金魚の屋外ビオトープ飼育（プラ舟・睡蓮鉢）の始め方',
+    summary:
+      '金魚も屋外で飼えますが、めだかと同じ感覚で容器を選ぶと水量が足りません。私が45L容器で痛い目に遭った話と、屋外向きの品種の見分け方、めだか以上に気を使う防鳥ネットと置き場所の話をまとめました。',
+    species: ['goldfish'],
+    topics: ['outdoor'],
+    publishedDate: '2026-08-21',
+  },
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
